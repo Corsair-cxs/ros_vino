@@ -1,0 +1,20 @@
+<launch>
+
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name="align_depth" value="true"/>
+    </include>
+
+    <node name="object_detection_ssd" pkg="ros_vino" type="object_detection_ssd" output="screen">
+        <param name="topic_image_input"     value="/camera/color/image_raw" />
+        <param name="topic_image_output"    value="/camera/image_rects" />
+        <param name="score_threshold"       value="0.8" />
+        <param name="device"                value="MYRIAD" />
+        <param name="model_path"            value="$(find ros_vino)/models/FP16/mobilenet-ssd/mobilenet-ssd.xml" />
+        <param name="bool_auto_resize"      value="true" />
+        <param name="bool_pc"               value="true" />
+        <param name="bool_raw"              value="false" />
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ros_vino)/rviz/demo.rviz" />
+
+</launch>
