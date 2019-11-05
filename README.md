@@ -32,7 +32,7 @@ This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of
 
 ## 4. Installation
 
-*This installation is only tested on Ubuntu 16.04, ROS Kinetic and OpenVINO 2019 R3.*
+*This installation is only properly tested on Ubuntu 16.04, ROS Kinetic and OpenVINO 2019 R3.*
 
 ### 4.1 Install OpenVINO
 
@@ -45,10 +45,10 @@ This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of
    tar xvf l_openvino_toolkit_<VERSION>.tgz
    cd l_openvino_toolkit_<VERSION>
    sudo -E ./install_openvino_dependencies.sh
-   sudo ./install_GUI.sh
+   sudo -E ./install_GUI.sh
    ```
 
-3. In the GUI, make sure the installation is to `/opt/intel`. (Default)
+3. In the GUI, make sure the installation directory is set to `/opt/intel` by default.
 
 4. Source OpenVINO environment variables.
 
@@ -136,18 +136,16 @@ This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of
 - **bool_pc** - Optional. Enables per-layer performance report. Default is false.
 - **bool_raw** - Optional. Inference results as raw values. Default is false.
 
-## Customize model:
-
-To use other download
+## Download your own model:
 
 1. Download model through downloader:
 
    ```bash
    # Download Mobilenet-SSD Model using downloader
    cd /opt/intel/openvino/deployment_tools/open_model_zoo/tools/downloader
-   python3 ./downloader.py --name [MODEL_NAME]
+   sudo python3 ./downloader.py --name [MODEL_NAME]
    # Copy the downloaded model to ~/openvino_models/
-   cd /opt/intel/openvino/deployment_tools/open_model_zoo/tools/public
+   cd /opt/intel/openvino/deployment_tools/open_model_zoo/tools/downloader/public
    cp -r [MODEL_NAME]/ ~/openvino_models/models/FP16/[MODEL_NAME]
    ```
 
@@ -186,4 +184,5 @@ To use other download
 ## Notes
 
 - You're welcome to push issue and I will help you to make this dedicated package to work on your machine too.
+- You're welcome to suggest any Todo.
 - Don't forget to give a star if you like this package! Thanks!=D
