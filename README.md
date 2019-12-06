@@ -9,26 +9,40 @@ This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of
 
 ## 1. Nodes
 
-- [object_detection_ssd](src/object_detection_ssd): 
+- [object_detection_ssd](src/object_detection_ssd): A Real-time SSD Object Detection using OpenVINO
+  
   - Subscribe: 
+    
     - A standard image topic of ```sensor_msgs::Image```, it can be from any USB camera or Realsense camera.
   - Publish: 
     - A new image topic of ```sensor_msgs::Image``` with bounding boxes
+    
     - A list of detected object topic of ```ros_vino::Objects```
+    
+      
+  
+- [multi_kf_tracker](src/multi_kf_tracker): A Real-time Multi Tracker using Kalman Filter and Hungarian Algorithm
+
+  - Subscribe: 
+    - A standard image topic of ```sensor_msgs::Image```, it can be from any USB camera or Realsense camera.
+    - A list of detected object topic of ```ros_vino::Objects```
+  - Publish: 
+    - A new image topic of ```sensor_msgs::Image``` with tracked bounding boxes
+    - A list of tracked object topic of ```ros_vino::Objects```
 
 ## 2. Results
 
-[object_detection_ssd](src/object_detection_ssd): (Full frame rate)
+**MobileNet SSD Object Detection (Bottom)**: 30 FPS
 
-![object_detection_result](docs/object_detection_result.gif)
+**Multi Object Tracking (Upper)**: 30 FPS
 
-
+![multi_kf_track](docs/multi_kf_track.gif)
 
 ## 3. Pre-requisites
 
 1. Ubuntu 16.04/18.04
 2. OpenVINO 2019 R3
-3. ROS Kinetic Kame/Melodic Morenia
+3. ROS Kinetic / Melodic 
 
 ## 4. Installation
 
@@ -109,9 +123,7 @@ This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of
 
    
 
-## Demo
-
-### Object Detection SSD
+## Object Detection SSD Demo
 
 - Launch object detection demo with Intel Realsense:
 
@@ -135,6 +147,34 @@ This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of
 - **bool_auto_resize** - Optional. Enables resizable input with support of ROI crop & auto resize. Default is true.
 - **bool_pc** - Optional. Enables per-layer performance report. Default is false.
 - **bool_raw** - Optional. Inference results as raw values. Default is false.
+
+
+
+## Detection + Multi Tracker
+
+- Launch object tracker demo with Intel Realsense and object detection:
+
+  ```bash
+  roslaunch ros_vino detection_track_demo.launch
+  ```
+
+### Parameters
+
+- **topic_image_input** - Optional. The topic name of input images.
+- **topic_objects_input** - Optional. The topic name of detected objects.
+- **topic_image_output** - Optional. The topic name of output images which contains tracked bounding boxes.
+- **topic_objects_output** - Optional. The topic name of tracked objects.
+- **min_correspondence_cost** - Optional. The minimum correspondence cost to be considered as a new untracked detection. Default is 100.
+- **p_sampling_time** - Optional. The output rate of object detection. Default is 30.0.
+- **p_loop_rate** - Optional. The desired update rate of output image and objects. Default is 30.0.
+- **p_tracking_duration** - Optional. The number of seconds to keep the tracked without a matched detection. Default is 0.5.
+- **p_process_variance** - Optional. The process variance of Kalman filter. Default is 1.0.
+
+- **p_process_rate_variance** - Optional. The process rate variance of Kalman filter. Default is 10.0.
+
+- **p_measurement_variance** - Optional. The detection variance for Kalman filter. Default is 10000.0.
+
+
 
 ## Download your own model:
 

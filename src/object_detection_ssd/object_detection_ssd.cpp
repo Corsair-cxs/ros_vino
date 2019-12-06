@@ -240,7 +240,7 @@ void ObjectDetectionSSD::run()
                                 labels[label] : std::string("label #") + std::to_string(label)) + conf.str(),
                                 cv::Point2f(xmin, ymin - 5), cv::FONT_HERSHEY_COMPLEX_SMALL, 1,
                                 cv::Scalar(0, 0, 255));
-                    cv::rectangle(curr_frame, cv::Point2f(xmin, ymin), cv::Point2f(xmax, ymax), cv::Scalar(0, 0, 255));
+                    cv::rectangle(curr_frame, cv::Point2f(xmin, ymin), cv::Point2f(xmax, ymax), cv::Scalar(0, 0, 255), 4);
 
                     // Add object into objs_msg
                     ros_vino::Object obj_msg;

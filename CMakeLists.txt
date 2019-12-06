@@ -13,6 +13,8 @@ if(TARGET IE::ie_cpu_extension)
     add_definitions(-DWITH_EXTENSIONS)
 endif()
 
+find_package(Armadillo REQUIRED)
+
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   InferenceEngine
@@ -62,6 +64,7 @@ include_directories(
   ${InferenceEngine_INCLUDE_DIRS}
   ${InferenceEngine_INCLUDE_DIRS}/../samples/common
   ${InferenceEngine_INCLUDE_DIRS}/../src/extension
+  ${ARMADILLO_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
 )
 
@@ -88,6 +91,34 @@ install(TARGETS object_detection_ssd
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
     RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+
+
+
+add_executable(multi_kf_tracker
+  src/multi_kf_tracker/multi_kf_tracker.cpp
+  src/multi_kf_tracker/main.cpp
+)
+add_dependencies(multi_kf_tracker ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(multi_kf_tracker
+  ${catkin_LIBRARIES}
+  ${ARMADILLO_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
+if(TARGET IE::ie_cpu_extension)
+    target_link_libraries(multi_kf_tracker 
+    IE::ie_cpu_extension
+    )
+endif()
+
+# target_include_directories(${IE_SAMPLE_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../common")
+
+install(TARGETS multi_kf_tracker
+    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+
 
 # install(DIRECTORY launch/
 #    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch )
