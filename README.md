@@ -3,7 +3,8 @@
 A generic ROS wrapper for OpenVINO, providing the following features:
 
 - Support CPU, GPU and Myriad (Neural Compute Stick 2) platforms.
-- Real-time SSD object detection
+- Real-time SSD Object Detection
+- Real-time Bounding Box Tracking
 
 This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of Oct 2019).
 
