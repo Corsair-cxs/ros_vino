@@ -1,14 +1,23 @@
-# ros_vino
+# ROS OpenVINO Package (ros_vino)
 
 A generic ROS wrapper for OpenVINO, providing the following features:
 
 - Support CPU, GPU and Myriad (Neural Compute Stick 2) platforms.
 - Real-time SSD Object Detection
 - Real-time Bounding Box Tracking
+- More to come!
 
 This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of Oct 2019).
 
-## 1. Nodes
+## 1. Results
+
+**MobileNet SSD Object Detection (Bottom)**: 30 FPS
+
+**Multi Object Tracking (Upper)**: 30 FPS
+
+![multi_kf_track](docs/multi_kf_track.gif)
+
+## 2. Nodes
 
 - [object_detection_ssd](src/object_detection_ssd): A Real-time SSD Object Detection using OpenVINO
   
@@ -30,14 +39,6 @@ This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of
   - Publish: 
     - A new image topic of ```sensor_msgs::Image``` with tracked bounding boxes
     - A list of tracked object topic of ```ros_vino::Objects```
-
-## 2. Results
-
-**MobileNet SSD Object Detection (Bottom)**: 30 FPS
-
-**Multi Object Tracking (Upper)**: 30 FPS
-
-![multi_kf_track](docs/multi_kf_track.gif)
 
 ## 3. Pre-requisites
 
