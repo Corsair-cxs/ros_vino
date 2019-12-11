@@ -113,7 +113,7 @@ This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of
 
    ```bash
    cd ~/catkin_ws/src
-   git clone http://github.com/songshan/ros_vino
+   git clone https://github.com/songshan0321/ros_vino.git
    ```
 
 2. Compile!
