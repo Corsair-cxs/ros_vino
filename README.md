@@ -107,11 +107,12 @@ This package works perfectly with OpenVINO 2019 R3 Release (Newest Release as of
 
    
 
-### 4.2 Install ros_vino
+### 4.2 Install Armadillo dependency and ros_vino
 
 1. Clone this package into your workspace, assuming `~/catkin_ws` as your ROS workspace:
 
    ```bash
+   sudo apt-get install libarmadillo-dev
    cd ~/catkin_ws/src
    git clone http://github.com/songshan/ros_vino
    ```
