@@ -29,6 +29,7 @@ public:
   void predictState() {
     q_pred = A * q_est + B * u;
     P = A * P * trans(A) + Q;
+    q_est = q_pred;
   }
 
   void correctState() {

@@ -25,9 +25,6 @@ public:
     object_.height = kf_h_.q_pred(0);
     object_.width = kf_w_.q_pred(0);
 
-    object_.vel_height = kf_h_.q_pred(1);
-    object_.vel_width = kf_w_.q_pred(1);
-
     fade_counter_--;
   }
 
@@ -51,9 +48,6 @@ public:
     object_.height = kf_h_.q_est(0);
     object_.width = kf_w_.q_est(0);
 
-    object_.vel_height = kf_h_.q_est(1);
-    object_.vel_width = kf_w_.q_est(1);
-
     fade_counter_ = s_fade_counter_size;
   }
 
@@ -76,9 +70,6 @@ public:
 
     object_.height = kf_h_.q_est(0);
     object_.width = kf_w_.q_est(0);
-
-    object_.vel_height = kf_h_.q_est(1);
-    object_.vel_width = kf_w_.q_est(1);
 
     fade_counter_--;
   }
@@ -141,6 +132,8 @@ private:
 
     kf_x_.q_pred(1) = object_.vel_x;
     kf_y_.q_pred(1) = object_.vel_y;
+    kf_h_.q_pred(1) = 0.0;
+    kf_w_.q_pred(1) = 0.0;
 
     kf_x_.q_est(0) = object_.x;
     kf_y_.q_est(0) = object_.y;
@@ -149,6 +142,8 @@ private:
 
     kf_x_.q_est(1) = object_.vel_x;
     kf_y_.q_est(1) = object_.vel_y;
+    kf_h_.q_est(1) = 0.0;
+    kf_w_.q_est(1) = 0.0;
   }
 
   ros_vino::Object object_;

@@ -9,5 +9,3 @@ float32 width           # normalized value of box width
 
 float32 vel_x              # normalized velocity of box top-left point coordinate x
 float32 vel_y              # normalized velocity of box top-left point coordinate y
-float32 vel_height          # normalized velocity of box height
-float32 vel_width           # normalized velocity of box width

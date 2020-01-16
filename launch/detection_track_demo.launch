@@ -8,7 +8,7 @@
         <param name="topic_image_input"     value="/camera/color/image_raw" />
         <param name="topic_image_output"    value="/camera/image_rects" />
         <param name="score_threshold"       value="0.7" />
-        <param name="device"                value="MYRIAD" />
+        <param name="device"                value="CPU" />
         <param name="model_path"            value="$(find ros_vino)/models/FP16/mobilenet-ssd/mobilenet-ssd.xml" />
         <!-- <param name="model_path"            value="$(find ros_vino)/models/FP16/mobilenet-lb-0/frozen_inference_graph.xml" /> -->
         <param name="bool_auto_resize"      value="true" />
@@ -21,13 +21,13 @@
         <param name="topic_objects_input"       value="/camera/detected_objects" />
         <param name="topic_image_output"        value="/camera/image_tracked" />
         <param name="topic_objects_output"      value="/camera/tracked_objects" />
-        <param name="min_correspondence_cost"   value="100.0" />
+        <param name="min_correspondence_cost"   value="50.0" />
         <param name="p_loop_rate"               value="30.0" />
         <param name="p_tracking_duration"       value="0.5" />
         <param name="p_sampling_time"           value="30.0" />
-        <param name="p_process_variance"        value="1.0" />
-        <param name="p_process_rate_variance"   value="10.0" />
-        <param name="p_measurement_variance"    value="10000.0" />
+        <param name="p_process_variance"        value="10.0" />
+        <param name="p_process_rate_variance"   value="5.0" />
+        <param name="p_measurement_variance"    value="10.0" />
     </node>
 
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ros_vino)/rviz/demo.rviz" />

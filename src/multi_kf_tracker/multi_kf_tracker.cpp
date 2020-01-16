@@ -103,15 +103,6 @@ void MultiKfTracker::rosCallbackDetectedObjects(const ros_vino::Objects::ConstPt
 
 double MultiKfTracker::objectCostFunction(const ros_vino::Object& new_object, const ros_vino::Object& old_object) {
 
-    // // Normalized Euclidean Distance
-    // double new_center_x = new_object.x + new_object.width/2;
-    // double new_center_y = new_object.y + new_object.height/2;
-    // double old_center_x = new_object.x + old_object.width/2;
-    // double old_center_y = new_object.y + old_object.height/2;
-    // double norm_dist_x = (new_center_x - old_center_x)/current_image.cols;
-    // double norm_dist_y = (new_center_y - old_center_y)/current_image.rows;
-    // double dist_cost = sqrt(pow(norm_dist_x, 2.0) + pow(norm_dist_y, 2.0));
-
     double label_cost = (new_object.label != old_object.label) ? 1 : 0; 
 
     cv::Rect new_rect = cv::Rect(new_object.x, new_object.y, new_object.width, new_object.height);
